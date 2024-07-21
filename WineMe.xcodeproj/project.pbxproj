@@ -33,9 +33,9 @@
 		1AB6BEED2C459AE50062C7D3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEEC2C459AE50062C7D3 /* ImageDownloader.swift */; };
 		1AB6BEEF2C459BB50062C7D3 /* NukeImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEEE2C459BB50062C7D3 /* NukeImageProvider.swift */; };
 		1AB6BEF12C459CCB0062C7D3 /* MockImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEF02C459CCB0062C7D3 /* MockImageProvider.swift */; };
-		1AE71C632C4D22AD00675673 /* ForegroundTextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE71C622C4D22AD00675673 /* ForegroundTextColor.swift */; };
 		1AE71C662C4D2D3000675673 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 1AE71C652C4D2D3000675673 /* Shimmer */; };
 		1AE71C6A2C4D420200675673 /* CirclePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE71C692C4D420200675673 /* CirclePicker.swift */; };
+		1AE71C6C2C4D8F5000675673 /* AppColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE71C6B2C4D8F5000675673 /* AppColorScheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +84,8 @@
 		1AB6BEEC2C459AE50062C7D3 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		1AB6BEEE2C459BB50062C7D3 /* NukeImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeImageProvider.swift; sourceTree = "<group>"; };
 		1AB6BEF02C459CCB0062C7D3 /* MockImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageProvider.swift; sourceTree = "<group>"; };
-		1AE71C622C4D22AD00675673 /* ForegroundTextColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundTextColor.swift; sourceTree = "<group>"; };
 		1AE71C692C4D420200675673 /* CirclePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePicker.swift; sourceTree = "<group>"; };
+		1AE71C6B2C4D8F5000675673 /* AppColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColorScheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,7 +314,7 @@
 		1AE71C612C4D229D00675673 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1AE71C622C4D22AD00675673 /* ForegroundTextColor.swift */,
+				1AE71C6B2C4D8F5000675673 /* AppColorScheme.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -459,6 +459,7 @@
 			files = (
 				1A51480B2C44448500C334E9 /* MockWineRepository.swift in Sources */,
 				1AB6BEEF2C459BB50062C7D3 /* NukeImageProvider.swift in Sources */,
+				1AE71C6C2C4D8F5000675673 /* AppColorScheme.swift in Sources */,
 				1A5148082C44448500C334E9 /* NetworkTarget.swift in Sources */,
 				1A5148022C44448500C334E9 /* WineListView.swift in Sources */,
 				1A51480A2C44448500C334E9 /* WineType.swift in Sources */,
@@ -468,7 +469,6 @@
 				1A51480C2C44448500C334E9 /* NetworkWineRepository.swift in Sources */,
 				1A5148112C445E9500C334E9 /* WineError.swift in Sources */,
 				1A5148072C44448500C334E9 /* NetworkError.swift in Sources */,
-				1AE71C632C4D22AD00675673 /* ForegroundTextColor.swift in Sources */,
 				1AB6BEF12C459CCB0062C7D3 /* MockImageProvider.swift in Sources */,
 				1A51480F2C44448500C334E9 /* GetWineTarget.swift in Sources */,
 				1A51480E2C44448500C334E9 /* WineRepository.swift in Sources */,

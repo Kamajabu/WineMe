@@ -12,8 +12,10 @@ import SwiftUI
 struct WineListView: View {
     @ObservedObject var viewModel: WineListViewModel
 
-    @State var wineType: WineType = .reds
-    @State private var colorMode: Int = 0
+    @State private var wineType: WineType = .reds
+    @AppStorage("colorScheme") var selectedColorScheme: AppColorScheme = .dark
+
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         NavigationStack {
@@ -29,17 +31,21 @@ struct WineListView: View {
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Picker("Color", selection: $colorMode) {
-                        Text("Light").tag(0)
-                        Text("Dark").tag(1)
+                    Picker(selection: $selectedColorScheme, label: Text("Color Scheme")) {
+                        Text(AppColorScheme.light.label).tag(AppColorScheme.light)
+                        Text(AppColorScheme.dark.label).tag(AppColorScheme.dark)
                     }
-                    .pickerStyle(.inline)
+                    .pickerStyle(.segmented)
                 }
             }
+            .animation(.easeInOut, value: wineType)
             .task(id: wineType) {
                 await viewModel.downloadWines(type: wineType)
             }
-            .preferredColorScheme(colorMode == 0 ? .light : .dark)
+            .preferredColorScheme(selectedColorScheme.systemScheme)
+            .onAppear {
+                selectedColorScheme = AppColorScheme(systemScheme: colorScheme)
+            }
         }
     }
 
@@ -83,6 +89,6 @@ private extension View {
     }
 }
 
-#Preview {
+ #Preview {
     WineListView(viewModel: WineListViewModel(repository: MockWineRepository()))
-}
+ }

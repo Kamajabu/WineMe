@@ -11,7 +11,8 @@ import SwiftUI
 struct WineMeApp: App {
     
     @StateObject var wineListViewModel = WineListViewModel(repository: NetworkWineRepository())
-    
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some Scene {
         WindowGroup {
             WineListView(viewModel: wineListViewModel)

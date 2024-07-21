@@ -34,7 +34,7 @@ struct CirclePicker<Option: CirclePickerOption>: View {
     typealias Const = CirclePickerConst
 
     var size: CGFloat {
-        pickerExtended ? Const.extendedSize : Const.collapsedSize
+        pickerExtended ? .infinity : Const.collapsedSize
     }
 
     var offset: CGFloat {
@@ -68,48 +68,31 @@ struct CirclePicker<Option: CirclePickerOption>: View {
         ZStack(alignment: .trailing) {
             Capsule()
                 .fill(.ultraThickMaterial)
-                .frame(width: size, height: Const.collapsedSize)
+                .frame(height: Const.collapsedSize)
+                .frame(maxWidth: size)
                 .shadow(radius: 4, x: 0, y: 5)
 
             if pickerExtended {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        ForEach(options) { option in
-                            Text(option.label)
-                                .font(.caption)
-                                .frame(width: 60, height: 30)
-                                .background {
-                                    if option == selected {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(.ultraThickMaterial)
-                                            .stroke(.primary, lineWidth: 1)
-                                            .shadow(radius: 1)
-                                    } else {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(.thickMaterial)
-                                    }
-                             
-                                }
-                                .padding(4)
-                                .scrollTransition(.animated.threshold(.visible(0.8))) { content, phase in
-                                    content
-                                        .opacity(phase.isIdentity ? 1 : 0.75)
-                                        .scaleEffect(phase.isIdentity ? 1 : 0.75)
-                                        .blur(radius: phase.isIdentity ? 0 : 1)
-                                }
+                        ForEach(options, id: \.id) { option in
+                            optionView(option)
                    
                         }
                     }.scrollTargetLayout()
                 }
                 .scrollPosition(id: $scrolledID)
                 .scrollTargetBehavior(.viewAligned)
-                .safeAreaPadding(.horizontal, 20)
-                .frame(width: 140, height: Const.collapsedSize)
+                .safeAreaPadding(.horizontal, 120)
+                .frame(height: Const.collapsedSize)
                 .padding(.trailing, 50)
-                .transition(.move(edge: .trailing).combined(with: .opacity))
+                .transition(.opacity)
                 .onChange(of: scrolledID) {
                     guard let selectedOption = options.first(where: { $0.id == scrolledID }) else { return }
                     selected = selectedOption
+                }
+                .onAppear {
+                    scrolledID = selected.id
                 }
             }
 
@@ -117,7 +100,7 @@ struct CirclePicker<Option: CirclePickerOption>: View {
                 .font(.system(size: 20))
                 .bold()
                 .frame(width: 20, height: 20)
-                .rotationEffect(.degrees(pickerExtended ? 0 : 360))
+                .rotationEffect(.degrees(pickerExtended ? 0 : 270))
                 .padding([.horizontal], 14)
                 .onTapGesture {
                     withAnimation {
@@ -126,14 +109,40 @@ struct CirclePicker<Option: CirclePickerOption>: View {
                 }
         }
     }
+    
+    private func optionView(_ option: Option) -> some View {
+        Text(option.label)
+            .font(.footnote)
+            .frame(height: 30)
+            .frame(minWidth: 60)
+            .padding(.horizontal, 10)
+            .background {
+                if option == selected {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.ultraThickMaterial)
+                        .stroke(.primary, lineWidth: 1)
+                        .shadow(radius: 1)
+                } else {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(.thickMaterial)
+                }
+         
+            }
+            .padding(.vertical, 4)
+            .scrollTransition(.animated.threshold(.visible(0.1))) { content, phase in
+                content
+                    .opacity(phase.isIdentity ? 1 : 0.4)
+                    .scaleEffect(phase.isIdentity ? 1 : 0.7)
+            }
+    }
 }
 
 #Preview {
-    @State var selectedOption = "One"
+    @State var selectedOption = "Sparkling"
 
     return HStack {
         Spacer()
-        CirclePicker(options: ["One", "Two", "Three", "Four", "Five", "Six"], selected: $selectedOption)
+        CirclePicker(options: ["One", "Two", "Three", "Sparkling", "Long Option", "Six"], selected: $selectedOption, scrolledID: selectedOption)
 
     }.frame(maxWidth: .infinity)
 }
