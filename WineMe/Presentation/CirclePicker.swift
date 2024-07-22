@@ -73,27 +73,30 @@ struct CirclePicker<Option: CirclePickerOption>: View {
                 .shadow(radius: 4, x: 0, y: 5)
 
             if pickerExtended {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 0) {
-                        ForEach(options, id: \.id) { option in
-                            optionView(option)
-                   
+                ScrollViewReader { proxy in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 0) {
+                            ForEach(options, id: \.id) { option in
+                                optionView(option)
+                            }
                         }
-                    }.scrollTargetLayout()
-                }
-                .scrollPosition(id: $scrolledID)
-                .scrollTargetBehavior(.viewAligned)
-                .safeAreaPadding(.horizontal, 120)
-                .frame(height: Const.collapsedSize)
-                .padding(.trailing, 50)
-                .transition(.opacity)
-                .onChange(of: scrolledID) {
-                    guard let selectedOption = options.first(where: { $0.id == scrolledID }) else { return }
-                    selected = selectedOption
-                }
-                .onAppear {
-                    scrolledID = selected.id
-                }
+                       
+                        .scrollTargetLayout()
+                    }
+                    .scrollTargetBehavior(.viewAligned)
+                    .safeAreaPadding(.horizontal, 120)
+                    .frame(height: Const.collapsedSize)
+                    .scrollPosition(id: $scrolledID, anchor: .trailing)
+                    .padding(.trailing, 50)
+                    .onChange(of: scrolledID) {
+                        guard let selectedOption = options.first(where: { $0.id == scrolledID }) else { return }
+                        selected = selectedOption
+                    }
+                    .onAppear {
+                        proxy.scrollTo(selected.id, anchor: .trailing)
+                    }
+                }.transition(.move(edge: .trailing).combined(with: .opacity))
+
             }
 
             Image(systemName: iconName)

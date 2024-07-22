@@ -43,7 +43,7 @@ extension WineCellView {
 struct WineCellView: View {
     @StateObject var viewModel: WineCellViewModel
     
-    private let viewHeight: CGFloat = 140
+    private let viewHeight: CGFloat = 160
         
     var body: some View {
         VStack {
@@ -73,6 +73,11 @@ struct WineCellView: View {
                         
                         Text(viewModel.model.wine)
                             .font(.caption)
+                            .foregroundStyle(.primary)
+                        
+                        if let rating = Double(viewModel.model.rating.average) {
+                            StatsRatioView(ratio: rating)
+                        }
                     }
                     .padding(10)
                     .background(.ultraThickMaterial)
@@ -123,8 +128,9 @@ struct WineCellView: View {
 }
 
 #Preview {
-    WineCellView(viewModel: .init(model: MockWineRepository.mockWineArray.first!,
+    WineCellView(viewModel: .init(model: MockWineRepository.mockWineArray[4],
                                   imageDownloader: MockImageProvider()))
         .frame(maxWidth: .infinity)
-        .padding()
+        .frame(height: 150)
+
 }

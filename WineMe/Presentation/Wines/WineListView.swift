@@ -46,12 +46,22 @@ struct WineListView: View {
             .onAppear {
                 selectedColorScheme = AppColorScheme(systemScheme: colorScheme)
             }
+            .navigationDestination(for: WineDTO.self) { wine in
+                VStack {
+                    Text("You selected \(wine.label)")
+                    if let rating = Double(wine.rating.average) {
+                        StatsRatioView(ratio: rating)
+                    }
+                    Text("\(wine.location)")
+
+                }
+            }
         }
     }
 
     private var wineListView: some View {
         ScrollView {
-            LazyVStack {
+            LazyVStack(spacing: 8) {
                 if viewModel.wines.isEmpty {
                     ForEach(1 ..< 10) { model in
                         WineCellView(viewModel: .init(model: MockWineRepository.mockWineArray.first!,
@@ -63,8 +73,9 @@ struct WineListView: View {
                     }
                 } else {
                     ForEach(viewModel.wines, id: \.hashValue) { model in
-                        WineCellView(viewModel: WineCellViewModel(model: model,
-                                                                  imageDownloader: NukeImageProvider()))
+                        NavigationLink(value: model) {
+                            WineCellView(viewModel: WineCellViewModel(model: model,
+                                                                      imageDownloader: NukeImageProvider()))
                             .scrollTransition(.animated.threshold(.visible(0.3))) { content, phase in
                                 content
                                     .opacity(phase.isIdentity ? 1 : 0)
@@ -73,6 +84,8 @@ struct WineListView: View {
                             }
                             .wineCellSize()
                             .transition(.blurReplace)
+                        }
+                        .tint(.primary)
                     }
                 }
             }
@@ -83,9 +96,8 @@ struct WineListView: View {
 
 private extension View {
     func wineCellSize() -> some View {
-        frame(height: 150)
+        frame(height: 160)
             .padding([.horizontal], 10)
-            .padding(.top, 5)
     }
 }
 

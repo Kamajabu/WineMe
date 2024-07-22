@@ -16,22 +16,28 @@ final class WineListViewModel: ObservableObject {
     
     @Published var error: String?
     @Published var wines: [WineDTO] = []
+    
     @Published var isLoading = false
+    
+    private var currentlyDisplayedType: WineType?
     
     init(repository: WineRepository) {
         self.repository = repository
     }
     
     func downloadWines(type: WineType) async {
+        guard type != currentlyDisplayedType else { return }
+        
         isLoading = true
         self.wines = []
+        
         defer {
             isLoading = false
         }
         
         do {
             self.wines = try await repository.fetchWines(type: type)
-
+            currentlyDisplayedType = type
         } catch {
             logger.error("\(error.localizedDescription)")
             self.error = error.localizedDescription

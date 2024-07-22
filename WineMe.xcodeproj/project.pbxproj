@@ -29,6 +29,7 @@
 		1A51480F2C44448500C334E9 /* GetWineTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5147FE2C44448500C334E9 /* GetWineTarget.swift */; };
 		1A5148112C445E9500C334E9 /* WineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5148102C445E9500C334E9 /* WineError.swift */; };
 		1A5148152C44780E00C334E9 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 1A5148142C44780E00C334E9 /* NukeUI */; };
+		1AA7D6732C4DB17A00EB4155 /* StatsRatioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA7D6722C4DB17A00EB4155 /* StatsRatioView.swift */; };
 		1AB6BEEB2C45962D0062C7D3 /* WineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEEA2C45962D0062C7D3 /* WineCellView.swift */; };
 		1AB6BEED2C459AE50062C7D3 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEEC2C459AE50062C7D3 /* ImageDownloader.swift */; };
 		1AB6BEEF2C459BB50062C7D3 /* NukeImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6BEEE2C459BB50062C7D3 /* NukeImageProvider.swift */; };
@@ -80,6 +81,7 @@
 		1A5147FA2C44448500C334E9 /* WineRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WineRepository.swift; sourceTree = "<group>"; };
 		1A5147FE2C44448500C334E9 /* GetWineTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWineTarget.swift; sourceTree = "<group>"; };
 		1A5148102C445E9500C334E9 /* WineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineError.swift; sourceTree = "<group>"; };
+		1AA7D6722C4DB17A00EB4155 /* StatsRatioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRatioView.swift; sourceTree = "<group>"; };
 		1AB6BEEA2C45962D0062C7D3 /* WineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WineCellView.swift; sourceTree = "<group>"; };
 		1AB6BEEC2C459AE50062C7D3 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		1AB6BEEE2C459BB50062C7D3 /* NukeImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeImageProvider.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				1A5147E72C44448500C334E9 /* WineListView.swift */,
 				1A5147E82C44448500C334E9 /* WineListViewModel.swift */,
 				1AB6BEEA2C45962D0062C7D3 /* WineCellView.swift */,
+				1AA7D6722C4DB17A00EB4155 /* StatsRatioView.swift */,
 			);
 			path = Wines;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				1A5148032C44448500C334E9 /* WineListViewModel.swift in Sources */,
 				1A5148042C44448500C334E9 /* WineMeApp.swift in Sources */,
 				1AB6BEEB2C45962D0062C7D3 /* WineCellView.swift in Sources */,
+				1AA7D6732C4DB17A00EB4155 /* StatsRatioView.swift in Sources */,
 				1A5147C02C44446B00C334E9 /* ContentView.swift in Sources */,
 				1A5148062C44448500C334E9 /* NetworkClient.swift in Sources */,
 				1AB6BEED2C459AE50062C7D3 /* ImageDownloader.swift in Sources */,
