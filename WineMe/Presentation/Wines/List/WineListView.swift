@@ -47,14 +47,7 @@ struct WineListView: View {
                 selectedColorScheme = AppColorScheme(systemScheme: colorScheme)
             }
             .navigationDestination(for: WineDTO.self) { wine in
-                VStack {
-                    Text("You selected \(wine.label)")
-                    if let rating = Double(wine.rating.average) {
-                        StatsRatioView(ratio: rating)
-                    }
-                    Text("\(wine.location)")
-
-                }
+                WineDetailView(wine: wine)
             }
         }
     }
